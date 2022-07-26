@@ -22,7 +22,7 @@ public class ByteBankController {
         service.criateDadosConta(corpoConta);
     }
 
-    @GetMapping(path = "/lista/conta")
+    @GetMapping(path = "/lista/conta/listall")
     public List<Conta> listaDadosConta() {
         return service.listaDadosConta();
     }
@@ -31,6 +31,16 @@ public class ByteBankController {
     @DeleteMapping(path = "/lista/delete/{numeroDaConta}")
     public void deletaRegistroConta(@PathVariable String numeroDaConta) {
         service.deletaDadosConta(numeroDaConta);
+    }
+
+    @GetMapping(path = "/lista/conta/getbynumerodaconta/{numeroDaConta}")
+    public Optional<Conta> getByNumeroDaConta(@PathVariable String numeroDaConta) {
+       return service.getByNumeroDaConta(numeroDaConta);
+    }
+
+    @PutMapping(path = "/lista/update/{numeroDaConta}")
+    public void updateDadosConta(@PathVariable String numeroDaConta, @RequestBody Conta corpoDaConta) {
+        service.updateDadosConta(numeroDaConta, corpoDaConta);
     }
 
 

@@ -29,4 +29,19 @@ public class ByteBankService {
         contaRepository.deleteByidCliente(lista.get().getIdCliente());
     }
 
+    @Transactional
+    public void updateDadosConta(String numeroDaConta, Conta corpoDaConta) {
+        Optional<Conta> contaDB = contaRepository.findByNumeroDaConta(numeroDaConta);
+        Conta conta = contaDB.get();
+        conta.setAgencia(corpoDaConta.getAgencia());
+        conta.setTipoDaConta(corpoDaConta.getTipoDaConta());
+        conta.setSaldo(corpoDaConta.getSaldo());
+        conta.setSenha(corpoDaConta.getSenha());
+    }
+
+    public Optional<Conta> getByNumeroDaConta(String numeroDaConta) {
+        Optional<Conta> getByNumeroDaConta = contaRepository.findByNumeroDaConta(numeroDaConta);
+        return getByNumeroDaConta;
+    }
+
 }
