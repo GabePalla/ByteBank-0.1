@@ -25,8 +25,7 @@ public class ByteBankService {
 
     @Transactional
     public void deletaDadosConta(String nuemroDaConta) {
-        Optional<Conta> lista = contaRepository.findByNumeroDaConta(nuemroDaConta);
-        contaRepository.deleteByidCliente(lista.get().getIdCliente());
+        contaRepository.deleteByNumeroDaConta(nuemroDaConta);
     }
 
     @Transactional
