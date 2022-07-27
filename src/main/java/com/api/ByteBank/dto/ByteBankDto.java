@@ -1,38 +1,25 @@
-package com.api.ByteBank.model;
+package com.api.ByteBank.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
-import javax.persistence.*;
-import java.util.UUID;
+public class ByteBankDto {
 
-@Entity
-@Table(name = "TB_CONTAS")
-public  class Conta {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idCliente;
-    @Column
+    @NotBlank
+    @Size(max = 4, min = 4)
     private String agencia;
-    @Column
+    @NotBlank
+    @Size(max = 7, min = 7)
     private String numeroDaConta;
-    @Column
+    @NotBlank
+    @Size(max = 30)
     private String tipoDaConta;
-    @Column
+
     private double saldo;
-    @Column
+    @NotBlank
+    @Size(max = 12, min = 6)
     private String senha;
-
-    public UUID getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(UUID idCliente) {
-        this.idCliente = idCliente;
-    }
 
     public String getAgencia() {
         return agencia;
@@ -73,10 +60,4 @@ public  class Conta {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public void teste() {
-
-    }
-
-
 }

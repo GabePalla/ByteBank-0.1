@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ByteBankService {
+public class ByteBankService implements ByteBankInterfaceService {
 
     @Autowired
     private ByteBankContaRepository contaRepository;

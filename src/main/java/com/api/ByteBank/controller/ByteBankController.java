@@ -1,13 +1,12 @@
 package com.api.ByteBank.controller;
 
+import com.api.ByteBank.dto.ByteBankDto;
 import com.api.ByteBank.model.Conta;
-import com.api.ByteBank.repository.ByteBankContaRepository;
 import com.api.ByteBank.service.ByteBankService;
-import org.aspectj.weaver.loadtime.Options;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +17,10 @@ public class ByteBankController {
     private ByteBankService service;
 
     @PostMapping(path = "/save/conta")
-    public void criateDadosConta(@RequestBody Conta corpoConta) {
-        service.criateDadosConta(corpoConta);
+    public void criateDadosConta(@RequestBody @Valid ByteBankDto corpoContaDto) {
+        var contaModel = new Conta();
+        BeanUtils.copyProperties(corpoContaDto, contaModel); //BeanUtils.copyProperties(Object source, Object target);
+        service.criateDadosConta(contaModel);
     }
 
     @GetMapping(path = "/lista/conta/listall")
@@ -39,8 +40,10 @@ public class ByteBankController {
     }
 
     @PutMapping(path = "/lista/update/{numeroDaConta}")
-    public void updateDadosConta(@PathVariable String numeroDaConta, @RequestBody Conta corpoDaConta) {
-        service.updateDadosConta(numeroDaConta, corpoDaConta);
+    public void updateDadosConta(@PathVariable String numeroDaConta, @RequestBody @Valid ByteBankDto corpoDaContaDto) {
+        var contaModel = new Conta();
+        BeanUtils.copyProperties(corpoDaContaDto, contaModel);
+        service.updateDadosConta(numeroDaConta, contaModel);
     }
 
 
