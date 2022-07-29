@@ -14,42 +14,39 @@ public  class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idCliente;
-    @Column
+    private UUID idconta;
+
     private String agencia;
-    @Column
+
     private String numeroDaConta;
-    @Column
+
     private String tipoDaConta;
-    @Column
+
     private double saldo;
-    @Column
+
     private String senha;
+    @ManyToOne
+    @JoinColumn(name = "fk_idconta")
+    private Cliente cliente;
 
-    public UUID getIdCliente() {
-        return idCliente;
+    public UUID getIdconta() {
+        return idconta;
     }
-
-    public void setIdCliente(UUID idCliente) {
-        this.idCliente = idCliente;
+    public void setIdconta(UUID idconta) {
+        this.idconta = idconta;
     }
-
     public String getAgencia() {
         return agencia;
     }
-
     public void setAgencia(String agencia) {
         this.agencia = agencia;
     }
-
     public String getNumeroDaConta() {
         return numeroDaConta;
     }
-
     public void setNumeroDaConta(String numeroDaConta) {
         this.numeroDaConta = numeroDaConta;
     }
-
     public String getTipoDaConta() {
         return tipoDaConta;
     }

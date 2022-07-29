@@ -1,34 +1,31 @@
 package com.api.ByteBank.model;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TB_CLIENTES")
 public class Cliente {
     @Id
-    private String IdCliente;
-
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idcliente;
     private String nome;
-
-    @Column
     private String sobrenome;
-
-    @Column
     private String cpf;
+    @OneToOne
+    @JoinColumn(name = "fk_endereco_idcliente")
+    private EnderecoCliente endereco;
 
-    private String endereco;
+    @OneToMany(mappedBy = "cliente")
+    private List<Conta> conta;
 
 
-    public String getIdCliente() {
-        return IdCliente;
+    public UUID getIdcliente() {
+        return idcliente;
     }
 
-    public void setIdCliente(String idCliente) {
-        IdCliente = idCliente;
+    public void setIdcliente(UUID idcliente) {
+        this.idcliente = idcliente;
     }
 
     public String getNome() {
@@ -55,11 +52,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getEndereco() {
+    public EnderecoCliente getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(EnderecoCliente endereco) {
         this.endereco = endereco;
     }
 }

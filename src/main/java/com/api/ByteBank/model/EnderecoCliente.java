@@ -1,34 +1,32 @@
 package com.api.ByteBank.model;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TB_ENDERECOS_CLIENTES")
 public class  EnderecoCliente {
     @Id
-    private String IdCliente;
-    @Column
-    private String cidade;
-    @Column
-    private String cep;
-    @Column
-    private String rua;
-    @Column
-    private String bairro;
-    @Column
-    private String numeroDaCasa;
+    private UUID idendereco;
 
-    public String getIdCliente() {
-        return IdCliente;
+    private String cidade;
+
+    private String cep;
+
+    private String rua;
+
+    private String bairro;
+
+    private String numeroDaCasa;
+    @OneToOne(mappedBy = "endereco")
+    private Cliente cliente;
+
+    public UUID getIdendereco() {
+        return idendereco;
     }
 
-    public void setIdCliente(String idCliente) {
-        IdCliente = idCliente;
+    public void setIdendereco(UUID idendereco) {
+        this.idendereco = idendereco;
     }
 
     public String getCidade() {
